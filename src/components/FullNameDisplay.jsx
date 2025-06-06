@@ -8,10 +8,11 @@ const FullNameDisplay = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (firstName && lastName) {
-      setFullName(` ${firstName} ${lastName}`);
+    if (firstName.trim !== "" && lastName.trim !== "") {
+      setFullName(`${firstName} ${lastName}`);
     }
   };
+  const isFormValid = firstName.trim !== "" && lastName.trim !== "";
   return (
     <div>
       <div className="main-heading">
@@ -36,13 +37,14 @@ const FullNameDisplay = () => {
               required
             />
           </div>
-          <div>
-            <button type="submit">Submit</button>
-          </div>
+
+          <button type="submit" disabled={!isFormValid}>
+            Submit
+          </button>
+
           {fullName && (
             <div style={{ marginTop: "1rem" }}>
-              <span>FullName:</span>
-              {fullName}
+              <p>FullName: {fullName}</p>
             </div>
           )}
         </form>
