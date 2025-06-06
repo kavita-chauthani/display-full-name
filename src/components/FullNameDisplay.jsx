@@ -6,18 +6,41 @@ const FullNameDisplay = () => {
   const [lastName, setLastName] = useState("");
   const [fullName, setFullName] = useState("");
 
+  const isLetter = (str) => {
+    for (let i = 0; i < str.length; i++) {
+      const code = str.charCodeAt(i);
+      if (!(code >= 65 && code <= 90) && !(code >= 97 && code <= 122)) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (firstName.trim !== "" && lastName.trim !== "") {
+    if (!isLetter(firstName) || !isLetter(lastName)) {
+      setFullName("");
+    } else {
       setFullName(`${firstName} ${lastName}`);
     }
   };
-  const isFormValid = firstName.trim !== "" && lastName.trim !== "";
+  const isFormValid =
+    firstName.trim !== "" &&
+    lastName.trim !== "" &&
+    isLetter(firstName) &&
+    isLetter(lastName);
   return (
     <div>
-      <div className="main-heading">
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <h1>Full Name Display</h1>
         <form onSubmit={handleSubmit}>
-          <h1>Full Name Display</h1>
           <div>
             <label htmlFor="name">Full Name:</label>
             <input
@@ -43,9 +66,7 @@ const FullNameDisplay = () => {
           </button>
 
           {fullName && (
-            <div style={{ marginTop: "1rem" }}>
-              <p>FullName: {fullName}</p>
-            </div>
+            <p style={{ marginTop: "1rem" }}>Full Name: {fullName}</p>
           )}
         </form>
       </div>
