@@ -24,11 +24,7 @@ const FullNameDisplay = () => {
       setFullName(`${firstName} ${lastName}`);
     }
   };
-  const isFormValid =
-    firstName.trim !== "" &&
-    lastName.trim !== "" &&
-    isLetter(firstName) &&
-    isLetter(lastName);
+
   return (
     <div>
       <div
@@ -42,7 +38,7 @@ const FullNameDisplay = () => {
         <h1>Full Name Display</h1>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name">Full Name:</label>
+            <label htmlFor="name">First Name:</label>
             <input
               type="text"
               value={firstName}
@@ -61,9 +57,7 @@ const FullNameDisplay = () => {
             />
           </div>
 
-          <button type="submit" disabled={!isFormValid}>
-            Submit
-          </button>
+          <button type="submit">Submit</button>
 
           {fullName && (
             <p style={{ marginTop: "1rem" }}>Full Name: {fullName}</p>
