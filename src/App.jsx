@@ -1,9 +1,9 @@
-import FullNameDisplay from "./components/FullNameDisplay";
+import User from "./components/User";
 
 function App() {
   return (
     <>
-      <FullNameDisplay />
+      <User />
     </>
   );
 }

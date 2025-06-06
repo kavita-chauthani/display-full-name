@@ -1,30 +1,16 @@
 import React, { useState } from "react";
-import FullName from "./FullNameDisplay";
 
-const FullNameDisplay = () => {
+const User = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [fullName, setFullName] = useState("");
 
-  const isLetter = (str) => {
-    for (let i = 0; i < str.length; i++) {
-      const code = str.charCodeAt(i);
-      if (!(code >= 65 && code <= 90) && !(code >= 97 && code <= 122)) {
-        return false;
-      }
-    }
-    return true;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!isLetter(firstName) || !isLetter(lastName)) {
-      setFullName("");
-    } else {
+    if (firstName && lastName) {
       setFullName(`${firstName} ${lastName}`);
     }
   };
-
   return (
     <div>
       <div
@@ -38,7 +24,7 @@ const FullNameDisplay = () => {
         <h1>Full Name Display</h1>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name">First Name:</label>
+            <label>First Name:</label>
             <input
               type="text"
               value={firstName}
@@ -48,7 +34,7 @@ const FullNameDisplay = () => {
           </div>
 
           <div>
-            <label htmlFor="last">Last Name:</label>
+            <label>Last Name:</label>
             <input
               type="text"
               value={lastName}
@@ -68,4 +54,4 @@ const FullNameDisplay = () => {
   );
 };
 
-export default FullNameDisplay;
+export default User;
