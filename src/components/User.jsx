@@ -9,48 +9,42 @@ const User = () => {
     e.preventDefault();
     if (firstName && lastName) {
       setFullName(`${firstName} ${lastName}`);
+      setFirstName("");
+      setLastName("");
     }
   };
+
   return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-        }}
-      >
+    <>
+      <form onSubmit={handleSubmit}>
         <h1>Full Name Display</h1>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>First Name:</label>
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-            />
-          </div>
+        <div>
+          <label>First Name:</label>
+          <input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </div>
 
-          <div>
-            <label>Last Name:</label>
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-            />
-          </div>
+        <div>
+          <label>Last Name:</label>
+          <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </div>
 
-          <button type="submit">Submit</button>
+        <button type="submit" disabled={!firstName || !lastName}>
+          Submit
+        </button>
 
-          {fullName && (
-            <p style={{ marginTop: "1rem" }}>Full Name: {fullName}</p>
-          )}
-        </form>
-      </div>
-    </div>
+        {fullName && <p style={{ marginTop: "1rem" }}>Full Name: {fullName}</p>}
+      </form>
+    </>
   );
 };
 
